@@ -17,6 +17,14 @@ type Props = {
 };
 
 export function PostsTable({ limit, title }: Props) {
+  // Sort posts in descending order by date
+  const sortedPosts = [...posts].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  //   Filter posts by limit
+  const filteredPosts = limit ? sortedPosts.slice(0, limit) : sortedPosts;
+
   return (
     <div className="mt-10">
       <h3 className="text-2xl mb-4 font-semibold">
@@ -35,7 +43,7 @@ export function PostsTable({ limit, title }: Props) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {posts.map((post) => (
+            {filteredPosts.map((post) => (
               <TableRow key={post.id}>
                 <TableCell>{post.title}</TableCell>
                 <TableCell className="hidden md:table-cell">
