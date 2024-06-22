@@ -1,3 +1,9 @@
+import { AuthTabs } from "@/components/auth/auth-tabs";
+
 export default function AuthPage() {
-  return <div>AuthPage</div>;
+  return (
+    <>
+      <AuthTabs />
+    </>
+  );
 }
